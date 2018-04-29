@@ -1,6 +1,6 @@
-# myapp
+# CS 152 Term Project
 
-A new Flutter project.
+A Flutter project for CS 152 Spring 2018
 
 ## Getting Started
 
