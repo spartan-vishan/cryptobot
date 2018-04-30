@@ -1,4 +1,4 @@
-package com.example.myapp;
+package com.yourcompany.startupnamer;
 
 import android.os.Bundle;
 

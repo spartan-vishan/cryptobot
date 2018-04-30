@@ -35,21 +35,21 @@ class RandomWordsState extends State<RandomWords> {
       new MaterialPageRoute(
         builder: (context) {
           final tiles = _saved.map(
-                (pair) {
-              return new ListTile(
-                title: new Text(
-                  pair.asPascalCase,
-                  style: _biggerFront,
-                ),
-              );
-            },
+              (pair) {
+                return new ListTile(
+                  title: new Text(
+                    pair.asPascalCase,
+                    style: _biggerFront,
+                  ),
+                );
+              },
           );
           final divided = ListTile
-              .divideTiles(
-            context: context,
-            tiles: tiles,
+            .divideTiles(
+              context: context,
+              tiles: tiles,
           )
-              .toList();
+          .toList();
 
           return new Scaffold(
             appBar: new AppBar(
@@ -111,7 +111,7 @@ class RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Newsfeed'),
+        title: new Text('Post Feed'),
         actions: <Widget> [
           new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
         ],

@@ -1,4 +1,4 @@
-name: myapp
+name: startup_namer
 description: A new Flutter project.
 
 dependencies:
