@@ -45,9 +45,7 @@ To install and run Flutter, your development environment must meet these minimum
 
 
 
-Integrating Firebase
-
-
+Integrating Firebase:
 
 iOS: Install cocoapods
      - install homebrew
@@ -84,27 +82,28 @@ Integrate the FlutterFire package
 	  1. Add rules to your root-level build.gradle file, to include the google-services plugin.
 
 	  buildscript {
-    repositories {
-        jcenter()
-        maven {
-            url "https://maven.google.com"
-        }
-    }
+   	  	       repositories {
+       		    		 jcenter()
+        			 maven {
+           			 url "https://maven.google.com"
+                       		  }
+   	 	       }
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'com.google.gms:google-services:3.1.0'              //new
-    } 
-}
+         	       dependencies {
+                       		 classpath 'com.android.tools.build:gradle:2.3.3'
+                                 classpath 'com.google.gms:google-services:3.1.0'              //new
+   	 	       } 
+         } 
 
 	2. Add the apply plugin for Google Services to the end of your app-level build.gradle file (/android/app/build.gradle).
 
 	       apply plugin: 'com.google.gms.google-services'                        //new
 
-    Pubspec.yaml Edit
+    Editing pubspec.yaml
 
     1. Add the plugins you need for this codelab to the pubspec.yaml in your Flutter project file as follows:
-    dependencies:
+
+   dependencies:
   flutter:
     sdk: flutter
   image_picker: 0.1.1                                             # new
