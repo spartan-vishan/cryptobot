@@ -53,6 +53,11 @@ iOS: Install cocoapods
        	         brew install cocoapods
 		 pod setup
 
+     Download the file “GoogleService-Info.plist” from the Firebase console.
+     Note: To get the file “GoogleService-Info.plist” working, you must drag
+           it into Xcode so that it configures properly, not simply download it to the
+           appropriate location.
+
 Android: install Google Repository
      - To verify that Google Repository is installed:
 
