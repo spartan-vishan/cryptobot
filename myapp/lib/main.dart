@@ -51,6 +51,35 @@ Future<Null> _ensureLoggedIn() async {
   }
 }
 
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: new AppBar(
+          title: new Text("realchat", style: new TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+          elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
+
+        ),
+        body: new Center(
+          child: new RaisedButton(
+            child: new Text('Login'),
+              onPressed: () {
+                _login();
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => new ChatScreen()),
+                );
+              },
+            ),
+        ),
+    );
+  }
+
+  void _login() async {
+    await _ensureLoggedIn();
+  }
+}
+
 class RealChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -59,7 +88,7 @@ class RealChatApp extends StatelessWidget {
       theme: defaultTargetPlatform == TargetPlatform.iOS
           ? iOSTheme
           : androidTheme,
-      home: new ChatScreen(),
+      home: new LoginPage(),
     );
   }
 }
