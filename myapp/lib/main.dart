@@ -63,7 +63,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: new Center(
         child: new RaisedButton(
-          child: new Text('Login'),
+          child: new Text('Login with Google'),
           onPressed: () {
             _login();
             Navigator.push(
