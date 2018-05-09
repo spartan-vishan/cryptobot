@@ -15,8 +15,8 @@ import 'package:image_picker/image_picker.dart';
 
 // There Date for iOS
 final ThemeData iOSTheme = new ThemeData(
-  primarySwatch: Colors.teal,
-  primaryColor: Colors.red,
+  primarySwatch: Colors.red,
+  primaryColor: Colors.teal,
   primaryColorBrightness: Brightness.light,
 );
 
