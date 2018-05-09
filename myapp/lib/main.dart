@@ -13,26 +13,76 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
+// There Date for iOS
 final ThemeData iOSTheme = new ThemeData(
-  primarySwatch: Colors.pink,
-  primaryColor: Colors.blue,
+  primarySwatch: Colors.teal,
+  primaryColor: Colors.red,
   primaryColorBrightness: Brightness.light,
 );
 
+// Theme Data for Android
 final ThemeData androidTheme = new ThemeData(
-  primarySwatch: Colors.blue,
-  accentColor: Colors.pink,
+  primarySwatch: Colors.teal,
+  accentColor: Colors.red,
 );
 
+// Global Variables for Firebase and Analytics
 final googleSignIn = new GoogleSignIn();
 final analytics = new FirebaseAnalytics();
 final auth = FirebaseAuth.instance;
 final reference = FirebaseDatabase.instance.reference().child('messages');
 
+// Main method calls home screen
 void main() {
-  runApp(new RealChatApp());
+  runApp(new RealTimeChatApp());
 }
 
+// Home Screen goes to Login Page
+class RealTimeChatApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: "RealTimeChat",
+      theme: defaultTargetPlatform == TargetPlatform.iOS
+          ? iOSTheme
+          : androidTheme,
+      home: new LoginPage(),
+    );
+  }
+}
+
+// Login Page ensures User is logged in prior to chat
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("RealTimeChat", style: new TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+        elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
+
+      ),
+      body: new Center(
+        child: new RaisedButton(
+          child: new Text('Login'),
+          onPressed: () {
+            _login();
+            Navigator.push(
+              context,
+              new MaterialPageRoute(builder: (context) => new ChatWidget()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  // Async function calls EnsureLoggedIn
+  void _login() async {
+    await _ensureLoggedIn();
+  }
+}
+
+// Tries to Login silently if User has used app before, else forces Google login
 Future<Null> _ensureLoggedIn() async {
   GoogleSignInAccount user = googleSignIn.currentUser;
   if (user == null)
@@ -51,51 +101,10 @@ Future<Null> _ensureLoggedIn() async {
   }
 }
 
-class LoginPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("realchat", style: new TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
-          elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
-
-        ),
-        body: new Center(
-          child: new RaisedButton(
-            child: new Text('Login'),
-              onPressed: () {
-                _login();
-                Navigator.push(
-                  context,
-                  new MaterialPageRoute(builder: (context) => new ChatScreen()),
-                );
-              },
-            ),
-        ),
-    );
-  }
-
-  void _login() async {
-    await _ensureLoggedIn();
-  }
-}
-
-class RealChatApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: "realchat",
-      theme: defaultTargetPlatform == TargetPlatform.iOS
-          ? iOSTheme
-          : androidTheme,
-      home: new LoginPage(),
-    );
-  }
-}
-
+// Message Widget defines what messages look like
 @override
-class ChatMessage extends StatelessWidget {
-  ChatMessage({this.snapshot, this.animation});
+class MessageWidget extends StatelessWidget {
+  MessageWidget({this.snapshot, this.animation});
   final DataSnapshot snapshot;
   final Animation animation;
 
@@ -139,12 +148,15 @@ class ChatMessage extends StatelessWidget {
   }
 }
 
-class ChatScreen extends StatefulWidget {
+// ChatWidget is a StateFul Widget so needs a State
+class ChatWidget extends StatefulWidget {
   @override
-  State createState() => new ChatScreenState();
+  State createState() => new ChatWidgetState();
 }
 
-class ChatScreenState extends State<ChatScreen> {
+// State for for ChatWidget, defines main chat page structure and pulls Firebase
+// Data in real-time. Handles both text and Images with Image Picker Library.
+class ChatWidgetState extends State<ChatWidget> {
   final TextEditingController _textController = new TextEditingController();
   bool _isComposing = false;
 
@@ -152,7 +164,7 @@ class ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text("realchat",
+          title: new Text("RealTimeChat",
                   style: new TextStyle(fontStyle: FontStyle.italic,
                   color: Colors.white)),
           elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
@@ -166,7 +178,7 @@ class ChatScreenState extends State<ChatScreen> {
               padding: new EdgeInsets.all(8.0),
               reverse: true,
               itemBuilder: (_, DataSnapshot snapshot, Animation<double> animation) {
-                return new ChatMessage(
+                return new MessageWidget(
                     snapshot: snapshot,
                     animation: animation
                 );
@@ -241,6 +253,7 @@ class ChatScreenState extends State<ChatScreen> {
     );
   }
 
+  // Handles submitted messages by doing pre sendMessage checks
   Future<Null> _handleSubmitted(String text) async {
     _textController.clear();
     setState(() {
@@ -250,6 +263,7 @@ class ChatScreenState extends State<ChatScreen> {
     _sendMessage(text: text);
   }
 
+  // Pushes message to Firebase
   void _sendMessage({ String text, String imageUrl }) {
     reference.push().set({
       'text': text,
