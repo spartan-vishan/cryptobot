@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Slide Shows in XHTML</title>
+  <meta name="copyright"
+   content="Copyright &#169; 2005 your copyright notice" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+   charset="utf-8" type="text/javascript"></script>
+  <style type="text/css">
+    <!-- your custom style rules -->
+  </style>
+</head>
+<body class=" single_slide" style="visibility: visible; font-size: 12pt;">
+
+  <div class=" slidy_toc hidden">
+
+    <div class=" toc-heading">Table of Contents</div>
+    "1. "
+    <a href="#(1)">Flutter.io and Dart</a>
+    <br>
+    "2. "
+    <a href="#(2)">Flutter.io</a>
+    </div>
+
+  <div class=" slide first-slide">
+    <h1>Flutter.io and Dart</h1>
+    <p class="fullimage"><img src="https://www.cyberfreewishes.com/uploads/6/4/0/6/6406650/686393652_orig.jpg" width="900" height="500"  alt="Cover page image"></p>
+    <p>Enrique Cardenas<br/>
+      Ibrahim Ansari <br/>
+      Juan Carlos Sandoval <br/>
+      Vishan Menon<br />
+    </p>
+
+    <br><br></div>
+
+<div class="slide hidden">
+<h1>Flutter.io</h1>
+
+<ul>
+<li>Mobile app SDK developed by Google</li>
+
+<li>Cross platform compatible code for Android and iOS</li>
+
+<li>Provides a rich set of Material Design and Cupertino style widgets</li>
+
+<li>Everything is a Widget</li>
+
+<li>Example: Structural elements(i.e. buttons or menus) Stylistic elements(i.e.
+  fonts or colors)</li>
+
+<li>Hierarchy: Each widget nests inside</li>
+
+<li>"Stateless" and "Stateful" widgets</li>
+
+<a href="https://ibb.co/kFBWES"><img src="https://preview.ibb.co/nKewg7/Screen_Shot_2018_05_09_at_10_05_09_AM.png" alt="Design image" border="0"></a>
+</div>
+
+<h1>Flutter vs HTML/CSS</h1>
+
+<p class="fullimage"><img src="https://raw.githubusercontent.com/spartan-vishan/cryptobot/master/docs/flutter-html.png"  alt="Cover page image"></p>
+  
+</div>
+
+<div class="slide hidden">
+<h1>Dart</h1>
+
+<ul>
+<li>General-purpose language developed by Google</li>
+
+<li>While it is technically an object-oriented language, it supports functional
+programming constructs.</li>
+
+<li>Suitable for both mobile and web apps</li>
+
+
+</div>
+
+<div class="slide hidden">
+<h1>Benefits of Dart</h1>
+
+<ul>
+<li>Can be both object oriented and functional</li>
+
+<li>Dart is strongly typed. Uses abstract classes and static typing</li>
+
+<li> Familiar C-style syntax</li>
+
+<li>In web browser, Dart code can be compiled as JavaScript. As such it is compatible with all major browsers wth no need for browsers to adopt Dart</li>
+
+<li>Single codebase for both iOS and Android</li>
+
+<li>Dart VM Hot Reload allows for fast development cycles</li>
+
+<li>Rich, well documented library</li>
+
+</div>
+
+<div class="slide hidden">
+<h1>Dart Widgets</h1>
+
+<p class="fullimage"><img src="https://raw.githubusercontent.com/spartan-vishan/cryptobot/master/docs/flutter-html.png"  alt="Cover page image"></p>
+  
+</div>
+
+</div>
+
+<div class="slide hidden">
+<h1>Firebase Backend</h1>
+
+<ul>
+<li>Mobile app SDK developed by Google as part of the Google cloud</li>
+
+<li>Easy to implement database platform for mobile dev and web programming</li>
+
+<li>Allowed us to implement user authentication via a users Google profile</li>
+
+<li>"Crashlytics": Firebase creates detailed reports of errors caught in the app</li>
+
+<li>Has many other features outside the scope of this project</li>
+
+</div>
+
+
+</body>
+</html>
