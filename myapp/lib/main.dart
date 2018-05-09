@@ -34,15 +34,15 @@ final reference = FirebaseDatabase.instance.reference().child('messages');
 
 // Main method calls home screen
 void main() {
-  runApp(new RealTimeChatApp());
+  runApp(new RealChatApp());
 }
 
 // Home Screen goes to Login Page
-class RealTimeChatApp extends StatelessWidget {
+class RealChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: "RealTimeChat",
+      title: "RealChat",
       theme:
           defaultTargetPlatform == TargetPlatform.iOS ? iOSTheme : androidTheme,
       home: new LoginPage(),
@@ -56,7 +56,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("RealTimeChat",
+        title: new Text("RealChat",
             style: new TextStyle(
                 fontStyle: FontStyle.italic, color: Colors.white)),
         elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
@@ -164,7 +164,7 @@ class ChatWidgetState extends State<ChatWidget> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-            title: new Text("RealTimeChat",
+            title: new Text("RealChat",
                 style: new TextStyle(
                     fontStyle: FontStyle.italic, color: Colors.white)),
             elevation:
