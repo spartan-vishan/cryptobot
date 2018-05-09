@@ -152,9 +152,11 @@ class ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text("realchat", style: new TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+          title: new Text("realchat",
+                  style: new TextStyle(fontStyle: FontStyle.italic,
+                  color: Colors.white)),
           elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
-
+            automaticallyImplyLeading: false
         ),
         body: new Column(children: <Widget>[
           new Flexible(
