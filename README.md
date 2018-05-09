@@ -1,6 +1,6 @@
 Link to presentation slides:
 
-https://spartan-vishan.github.io/cryptobot/
+https://spartan-vishan.github.io/realchat/
 
 To run the app on Android:
 1. Create a AVD using Android Studio's AVD Manager with API level 27.
