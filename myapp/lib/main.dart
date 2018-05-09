@@ -13,15 +13,15 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
-final ThemeData kIOSTheme = new ThemeData(
-  primarySwatch: Colors.orange,
-  primaryColor: Colors.grey[100],
+final ThemeData iOSTheme = new ThemeData(
+  primarySwatch: Colors.pink,
+  primaryColor: Colors.blue,
   primaryColorBrightness: Brightness.light,
 );
 
-final ThemeData kDefaultTheme = new ThemeData(
-  primarySwatch: Colors.purple,
-  accentColor: Colors.orangeAccent[400],
+final ThemeData androidTheme = new ThemeData(
+  primarySwatch: Colors.blue,
+  accentColor: Colors.pink,
 );
 
 final googleSignIn = new GoogleSignIn();
@@ -29,10 +29,8 @@ final analytics = new FirebaseAnalytics();
 final auth = FirebaseAuth.instance;
 final reference = FirebaseDatabase.instance.reference().child('messages');
 
-const String _name = "Your Name";
-
 void main() {
-  runApp(new FriendlychatApp());
+  runApp(new RealChatApp());
 }
 
 Future<Null> _ensureLoggedIn() async {
@@ -53,15 +51,44 @@ Future<Null> _ensureLoggedIn() async {
   }
 }
 
-class FriendlychatApp extends StatelessWidget {
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: new AppBar(
+          title: new Text("realchat", style: new TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+          elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
+
+        ),
+        body: new Center(
+          child: new RaisedButton(
+            child: new Text('Login'),
+              onPressed: () {
+                _login();
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => new ChatScreen()),
+                );
+              },
+            ),
+        ),
+    );
+  }
+
+  void _login() async {
+    await _ensureLoggedIn();
+  }
+}
+
+class RealChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: "Friendlychat",
+      title: "realchat",
       theme: defaultTargetPlatform == TargetPlatform.iOS
-          ? kIOSTheme
-          : kDefaultTheme,
-      home: new ChatScreen(),
+          ? iOSTheme
+          : androidTheme,
+      home: new LoginPage(),
     );
   }
 }
@@ -125,8 +152,9 @@ class ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text("Friendlychat"),
+          title: new Text("realchat", style: new TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
           elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
+
         ),
         body: new Column(children: <Widget>[
           new Flexible(
